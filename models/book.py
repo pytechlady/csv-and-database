@@ -30,3 +30,7 @@ class Book:
             
         except:
             print(f"error {name} already exists")
+    
+    def update_book_record(self, name, pages, user_id, id):
+        self.cursor.execute(f'UPDATE books SET name=%s, pages=%s, user_id={user_id}, updated_at=now() WHERE id ={id}',(name, pages))
+        self.conn.commit()

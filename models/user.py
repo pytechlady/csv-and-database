@@ -39,3 +39,7 @@ class User:
                             'VALUES(%s,%s, %s)',
                             (username,firstname,lastname))
         self.conn.commit()
+        
+    def update_record_of_user(self, username, firstname, lastname, id):
+        self.cursor.execute(f'UPDATE users SET username=%s, first_name=%s, last_name=%s, updated_at=now() WHERE id ={id}',(username, firstname, lastname))
+        self.conn.commit()
