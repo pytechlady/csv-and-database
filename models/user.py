@@ -33,3 +33,9 @@ class User:
     def get_user(self, id):
         self.cursor.execute(f"SELECT * FROM users WHERE id={id}")
         return self.cursor.fetchall()
+    
+    def create_user(self, username, firstname, lastname):
+        self.cursor.execute('INSERT INTO users(username, first_name, last_name)'
+                            'VALUES(%s,%s, %s)',
+                            (username,firstname,lastname))
+        self.conn.commit()
