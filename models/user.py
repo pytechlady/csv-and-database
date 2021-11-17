@@ -43,3 +43,7 @@ class User:
     def update_record_of_user(self, username, firstname, lastname, id):
         self.cursor.execute(f'UPDATE users SET username=%s, first_name=%s, last_name=%s, updated_at=now() WHERE id ={id}',(username, firstname, lastname))
         self.conn.commit()
+        
+    def delete_user(self, id):
+        self.cursor.execute(f'DELETE FROM users WHERE id ={id}')
+        self.conn.commit()
