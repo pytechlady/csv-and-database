@@ -18,3 +18,18 @@ class User:
             self.cursor.execute(file_name)
             self.conn.commit()
             self.conn.close()
+            
+    def populate_table(self):
+        with open('seeder.sql') as fd:
+            seeder_values = fd.read()
+            self.cursor.execute(seeder_values)
+            self.conn.commit()
+            self.conn.close()
+            
+    def get_all_users(self):
+        self.cursor.execute('SELECT * FROM users')
+        return self.cursor.fetchall()
+    
+    def get_user(self, id):
+        self.cursor.execute(f"SELECT * FROM users WHERE id={id}")
+        return self.cursor.fetchall()
